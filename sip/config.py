@@ -8,4 +8,3 @@ class Config(LiCmd):
         print('list:', key)
 
 
-config = Config()

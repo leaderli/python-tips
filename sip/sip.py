@@ -1,20 +1,25 @@
 import os
 import sys
 
-from config import config
+from config import Config
+from git import Git
 from li.li_cmd import LiCmd
+
+config = Config()
+
+git = Git()
 
 
 class Sip(LiCmd):
 
-    def do_config(self, key: str):
+    def do_config(self, args: str):
         """ """
-        config.onecmd(key)
+        config.onecmd(args)
 
-    def do_env(self, key):
+    def do_env(self, args):
         """ get environment variable , same as printenv"""
-        if key:
-            print('{}={}'.format(key, os.environ.get(key)))
+        if args:
+            print('{}={}'.format(args, os.environ.get(args)))
         else:
             print(os.environ)
             for k, v in os.environ.items():
@@ -24,6 +29,10 @@ class Sip(LiCmd):
         """exit the program."""
         print("bye.")
         exit(0)
+
+    def do_git(self, args):
+        """ """
+        git.onecmd(args)
 
 
 if __name__ == '__main__':

@@ -1,6 +1,8 @@
 import getopt
 import sys
 
+sys.path.append("d://work/workspace/idea/python-tips/")
+
 import yaml
 
 
@@ -27,9 +29,6 @@ def main():
       c: 100
     """
     y2 = yaml.load(document, Loader=yaml.Loader)
-    print(y2)
-
-    print({**y1, **y2})
 
     c = {}
     c.update(y1)

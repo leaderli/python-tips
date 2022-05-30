@@ -1,3 +1,3 @@
-import getopt
+from li import li
 
-print(getopt.getopt('-a -b -c'.strip().split(),'abc'))
+li.hello()
