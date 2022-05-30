@@ -5,4 +5,8 @@ from li.li_cmd import LiCmd
 class Git(LiCmd):
 
     def do_update(self, args):
+        print('------------------------')
         print(bash('git rev-parse --short HEAD'))
+        print('------------------------')
+        print('')
+        print('------------------------')
