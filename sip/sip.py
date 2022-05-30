@@ -1,56 +1,38 @@
 import os
-from cmd import Cmd
+import sys
+
+from config import config
+from li.li_cmd import LiCmd
 
 
-class Sip(Cmd):
+class Sip(LiCmd):
 
-    def cmdloop(self, intro=None):
-        print(self.intro)
+    def do_config(self, key: str):
+        """ """
+        config.onecmd(key)
 
-        try:
-            super().cmdloop(intro="")
-        except KeyboardInterrupt:
-            exit()
+    def do_env(self, key):
+        """ get environment variable , same as printenv"""
+        if key:
+            print('{}={}'.format(key, os.environ.get(key)))
+        else:
+            print(os.environ)
+            for k, v in os.environ.items():
+                print('{}={}'.format(k, v))
 
-
-def do_env(self, key):
-    """ get environment variable , default get 'com_pccc_sip_env' """
-    if not key:
-        key = 'com_pccc_sip_env'
-    return os.environ.get(key)
-
-
-def complete_hello(self, text, line, begidx, endidx):
-    return ['stranger']
-
-
-def help_hello(self):
-    """Says hello. If you provide a name, it will greet you with it."""
-    print('help_hello', self.help_hello.__doc__)
-
-
-def do_hello(self, args):
-    """Says hello. If you provide a name, it will greet you with it."""
-    if len(args) == 0:
-        name = 'stranger'
-    else:
-        name = args
-    print("Hello, %s" % name)
-
-
-def do_exit(self, args):
-    """exit the program."""
-    print("bye.")
-    exit(0)
+    def do_exit(self, args):
+        """exit the program."""
+        print("bye.")
+        exit(0)
 
 
 if __name__ == '__main__':
     sip = Sip()
-    # print(dir(prompt))
-    # for func in [func for func in dir(prompt) if
-    #              callable(getattr(prompt, func)) and func.startswith("do_") and func not in ['do_help']]:
-    #     print(func)
-    #     getattr(prompt, func)(sys.argv[1:])
-
     sip.prompt = '> '
-    sip.cmdloop('...')
+    command = ' '.join(sys.argv[1:])
+    if command:
+        sip.onecmd(command)
+    else:
+        # noinspection PyTypeChecker
+        sip.do_help(None)
+        sip.cmdloop()
