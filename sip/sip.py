@@ -7,38 +7,41 @@ class Sip(Cmd):
     def cmdloop(self, intro=None):
         print(self.intro)
 
-        while True:
-            try:
-                super().cmdloop(intro="")
-                break
-            except KeyboardInterrupt:
-                print("^C")
+        try:
+            super().cmdloop(intro="")
+        except KeyboardInterrupt:
+            exit()
 
-    def do_env(self, key):
-        """ get environment variable , default get 'com_pccc_sip_env' """
-        if not key:
-            key = 'com_pccc_sip_env'
-        return os.environ.get(key)
 
-    def complete_hello(self, text, line, begidx, endidx):
-        return ['stranger']
+def do_env(self, key):
+    """ get environment variable , default get 'com_pccc_sip_env' """
+    if not key:
+        key = 'com_pccc_sip_env'
+    return os.environ.get(key)
 
-    def help_hello(self):
-        """Says hello. If you provide a name, it will greet you with it."""
-        print('help_hello', self.help_hello.__doc__)
 
-    def do_hello(self, args):
-        """Says hello. If you provide a name, it will greet you with it."""
-        if len(args) == 0:
-            name = 'stranger'
-        else:
-            name = args
-        print("Hello, %s" % name)
+def complete_hello(self, text, line, begidx, endidx):
+    return ['stranger']
 
-    def do_exit(self, args):
-        """exit the program."""
-        print("bye.")
-        exit(0)
+
+def help_hello(self):
+    """Says hello. If you provide a name, it will greet you with it."""
+    print('help_hello', self.help_hello.__doc__)
+
+
+def do_hello(self, args):
+    """Says hello. If you provide a name, it will greet you with it."""
+    if len(args) == 0:
+        name = 'stranger'
+    else:
+        name = args
+    print("Hello, %s" % name)
+
+
+def do_exit(self, args):
+    """exit the program."""
+    print("bye.")
+    exit(0)
 
 
 if __name__ == '__main__':
