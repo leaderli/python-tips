@@ -5,5 +5,5 @@ def bash(command: str):
     with Popen(command, shell=True, stdout=PIPE, stderr=PIPE, universal_newlines=True) as fd:
         out, err = fd.communicate()
 
-        print(err)
+        print(bool(err), err)
         return out.strip()
