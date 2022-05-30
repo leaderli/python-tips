@@ -1,7 +1,14 @@
+import os
 from cmd import Cmd
 
 
 class Sip(Cmd):
+
+    def do_env(self, key):
+        """ get environment variable , default get 'com_pccc_sip_env' """
+        if not key:
+            key = 'com_pccc_sip_env'
+        return os.environ.get(key)
 
     def complete_hello(self, text, line, begidx, endidx):
         return ['stranger']
