@@ -4,6 +4,16 @@ from cmd import Cmd
 
 class Sip(Cmd):
 
+    def cmdloop(self, intro=None):
+        print(self.intro)
+
+        while True:
+            try:
+                super().cmdloop(intro="")
+                break
+            except KeyboardInterrupt:
+                print("^C")
+
     def do_env(self, key):
         """ get environment variable , default get 'com_pccc_sip_env' """
         if not key:
