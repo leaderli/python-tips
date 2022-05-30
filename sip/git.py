@@ -6,7 +6,7 @@ class Git(LiCmd):
 
     def do_update(self, args):
         print('------------------------')
-        print(bash('git rev-parse --short HEAD'))
+        print(bash('git rev-parse --short HEAD').strip())
         print('------------------------')
         print('')
         print('------------------------')
