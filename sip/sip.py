@@ -33,19 +33,12 @@ class Sip(LiCmd):
         exit(0)
 
     def do_pwd(self, argv):
-        """ get sip.py directory"""
-
-        print(os.getcwd())
+        """ get sip.py absolute path """
         print(__file__)
 
     def do_git(self, argv):
         """ """
         git.onecmd(argv)
-
-    def help_config(self, argv):
-
-        print(argv)
-        config.do_help(None)
 
 
 if __name__ == '__main__':
@@ -64,7 +57,8 @@ if __name__ == '__main__':
     sip.prompt = '> '
     command = ' '.join(args)
     if command:
-        sip.onecmd(command)
+        code = sip.onecmd(command)
+        print(code)
     else:
         # noinspection PyTypeChecker
         sip.do_help(None)
