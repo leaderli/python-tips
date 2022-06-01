@@ -13,6 +13,3 @@ def short_opts_exits(args, short):
             return opt
 
     return None
-
-
-print(short_opts_exits('e', 'd'))

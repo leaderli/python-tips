@@ -23,7 +23,7 @@ class Sip(LiCmd):
 
     def do_debug(self, argv):
         """
-        日志级别调整为 DEBUG , 提示符更改为 $
+        日志级别调整为 DEBUG , 提示符更改为 #
         -i 将日志级别调整为INFO ,提示符更改为 >
         """
         if short_opts_exits(argv, 'i'):
@@ -31,7 +31,7 @@ class Sip(LiCmd):
             sip.prompt = '> '
         else:
             li_log.set_format(logging.DEBUG)
-            sip.prompt = '$ '
+            sip.prompt = '# '
 
     def do_env(self, argv):
         """
@@ -84,13 +84,15 @@ class Sip(LiCmd):
         status = call(cmd)
 
         if status:
-            cmd = '''
-                    git add . &&
-                    git commit -m '{}' &&
-                    git push
-                  '''.format(msg)
-
-            run(cmd)
+            # cmd = '''
+            #         git add . &&
+            #         git commit -m '{}' &&
+            #         git push
+            #       '''.format(msg)
+            # call(cmd)
+            run('git add . ')
+            run("git commit -m   'test'")
+            run('git push ')
 
 
 if __name__ == '__main__':
@@ -101,7 +103,7 @@ if __name__ == '__main__':
     args = sys.argv[1:]
     opt = short_opts_exits(args, 'd')
     if opt:
-        li_log.set_format(logging.DEBUG)
+        sip.do_debug('')
         args.remove(opt)
 
     command = ' '.join(args)
