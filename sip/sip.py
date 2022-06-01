@@ -62,8 +62,8 @@ class Sip(LiCmd):
 
     def do_pull(self, argv):
         """
-        更新脚本，会自动备份当前脚本，并强制下载最新脚本，需要在配置文件中配置 git 地址，配置项key为git 。
-        仅支持使用ssh，需要自己去设定免密相关
+        更新脚本至最新脚本，使用 git 命令是实现的
+        -b 更新前自动备份，备份使用当前的 commit 摘要
         """
 
         run('git fetch --all')
