@@ -98,6 +98,7 @@ class Sip(LiCmd):
 if __name__ == '__main__':
 
     sip = Sip()
+    
     sip.prompt = '> '
 
     args = sys.argv[1:]
