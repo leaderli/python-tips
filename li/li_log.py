@@ -1,13 +1,12 @@
 import logging
 
+logging.basicConfig(format='%(levelname)s:%(message)s')
+
 
 def set_format(level=logging.INFO):
-    logging.basicConfig(level=level, format='%(levelname)s:%(message)s')
-
-
-
-
-
+    logging.root.setLevel(level)
+    logging.debug('test')
+    logging.info('test')
 
 
 def format_table(big_arr):

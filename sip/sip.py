@@ -33,8 +33,6 @@ class Sip(LiCmd):
             li_log.set_format(logging.DEBUG)
             sip.prompt = '$ '
 
-        logging.debug('test')
-        logging.info('test')
 
     def do_env(self, argv):
         """
