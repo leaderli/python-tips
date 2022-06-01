@@ -64,7 +64,7 @@ class Sip(LiCmd):
               '''.format(msg)
 
         print(cmd)
-        bash(cmd)
+        print(bash(cmd))
 
 
 if __name__ == '__main__':
