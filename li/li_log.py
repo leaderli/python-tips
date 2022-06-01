@@ -1,6 +1,7 @@
 import logging
 
-logging.basicConfig(format='%(levelname)s:%(message)s')
+# logging.basicConfig(format='%(levelname)s:%(message)s')
+logging.basicConfig(format='%(message)s')
 
 
 def set_format(level=logging.INFO):
