@@ -62,7 +62,9 @@ class Sip(LiCmd):
         git.onecmd(argv)
 
     def do_pull(self, argv):
-        """更新脚本至最新脚本，使用 git 命令是实现的
+        """
+        更新脚本至最新脚本，使用 git 命令是实现的
+        
         -b 更新前自动备份，备份使用当前的 commit 摘要
         """
 
@@ -77,7 +79,7 @@ class Sip(LiCmd):
             run('cd .. && zip -r {name}.{sha}.zip {name}'.format(name='python-tips', sha=sha))
         run('git reset --hard HEAD')
         run('git pull')
-        pass
+        exit()
 
     def do_push(self, argv):
         """
