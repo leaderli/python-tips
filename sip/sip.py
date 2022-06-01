@@ -6,7 +6,7 @@ from datetime import datetime
 from config import Config
 from git import Git
 from li import li_log
-from li.li_bash import bash
+from li.li_bash import run
 from li.li_cmd import LiCmd
 
 config = Config()
@@ -63,8 +63,8 @@ class Sip(LiCmd):
                 git push
               '''.format(msg)
 
-        print(bash('git status -s '))
-        print(bash(cmd))
+        print(run('git status -s '))
+        print(run(cmd))
 
 
 if __name__ == '__main__':
