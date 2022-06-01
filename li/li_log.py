@@ -10,6 +10,7 @@ def set_log(argv):
     short_opts = "d"
     long_opts = ["debug"]
 
+    print(print_table(argv))
     opts, args = getopt.getopt(argv, short_opts, long_opts)
 
     for opt, param in opts:
