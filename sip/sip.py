@@ -33,7 +33,6 @@ class Sip(LiCmd):
             li_log.set_format(logging.DEBUG)
             sip.prompt = '$ '
 
-
     def do_env(self, argv):
         """
         get environment variable , same as printenv
@@ -67,7 +66,6 @@ class Sip(LiCmd):
         """
         sha = call('git rev-parse --short HEAD')
 
-        self.prompt = '# '
         pass
 
     def do_push(self, argv):
