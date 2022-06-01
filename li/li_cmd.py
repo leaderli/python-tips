@@ -10,7 +10,7 @@ class LiCmd(Cmd):
         except KeyboardInterrupt:
             exit()
 
-    def default(self, line: str):
+    def default(self, line):
 
         print("unknown {} command: {}".format(self.__class__.__name__, line))
         # noinspection PyTypeChecker

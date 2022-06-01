@@ -4,6 +4,7 @@ import sys
 from config import Config
 from git import Git
 from li.li_cmd import LiCmd
+from li.li_log import set_log
 
 config = Config()
 
@@ -12,7 +13,7 @@ git = Git()
 
 class Sip(LiCmd):
 
-    def do_config(self, args: str):
+    def do_config(self, args):
         """ """
         config.onecmd(args)
 
@@ -36,6 +37,8 @@ class Sip(LiCmd):
 
 
 if __name__ == '__main__':
+
+    set_log(sys.argv[1:])
     sip = Sip()
     sip.prompt = '> '
     command = ' '.join(sys.argv[1:])

@@ -1,6 +1,5 @@
 import getopt
 import logging
-from typing import Union
 
 
 def __basic_config__(level):
@@ -16,9 +15,10 @@ def set_log(argv):
     for opt, param in opts:
         if opt in ('-d', '--debug'):
             __basic_config__(logging.DEBUG)
+            print('----------------d------------')
 
 
-def print_table(big_arr: Union[list, tuple]):
+def print_table(big_arr):
     """
         print table like data with fixed width
     """
