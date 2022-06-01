@@ -8,10 +8,7 @@ def run(command):
         out, err = fd.communicate()
         if fd.returncode:
             raise Exception(err.strip())
-        print(fd.returncode)
-        print(err.strip())
         print(out.strip())
-
         return fd.returncode
 
 
