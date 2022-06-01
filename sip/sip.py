@@ -90,7 +90,7 @@ class Sip(LiCmd):
             #         git push
             #       '''.format(msg)
             # call(cmd)
-            run("git add . && git commit -m   'test' && git push")
+            run("""git add . && git commit -m   '{}' && git push""".format(msg))
 
 
 if __name__ == '__main__':
