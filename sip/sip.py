@@ -38,20 +38,20 @@ class Sip(LiCmd):
 
 
 if __name__ == '__main__':
-    argv = sys.argv[1:]
+    args = sys.argv[1:]
     short_opts = "d"
     long_opts = ["debug"]
 
-    opts, args = getopt.getopt(argv, short_opts, long_opts)
+    opts = getopt.getopt(args, short_opts, long_opts)[0]
 
     for opt, param in opts:
         if opt in ('-d', '--debug'):
             li_log.set_debug()
-            argv.remove(opt)
+            args.remove(opt)
 
     sip = Sip()
     sip.prompt = '> '
-    command = ' '.join(argv)
+    command = ' '.join(args)
     if command:
         sip.onecmd(command)
     else:
