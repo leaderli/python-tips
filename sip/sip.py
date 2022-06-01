@@ -106,7 +106,6 @@ if __name__ == '__main__':
 
     sip = Sip()
 
-    print(re.sub(r'sip/sip.py$', '', __file__))
     os.chdir(re.sub(r'sip/sip.py$', '', __file__))
     sip.prompt = '> '
 
