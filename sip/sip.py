@@ -1,10 +1,12 @@
 import getopt
 import os
 import sys
+from datetime import datetime
 
 from config import Config
 from git import Git
 from li import li_log
+from li.li_bash import bash
 from li.li_cmd import LiCmd
 
 config = Config()
@@ -19,11 +21,15 @@ class Sip(LiCmd):
         config.onecmd(argv)
 
     def do_env(self, argv):
-        """ get environment variable , same as printenv"""
-        if args:
-            print('{}={}'.format(argv, os.environ.get(argv)))
+        """
+        get environment variable , same as printenv
+        if give a key , it will return the specific environment variable value
+        """
+        if argv:
+            val = os.environ.get(argv)
+            if val:
+                print('{}={}'.format(argv, val))
         else:
-            print(os.environ)
             for k, v in os.environ.items():
                 print('{}={}'.format(k, v))
 
@@ -39,6 +45,26 @@ class Sip(LiCmd):
     def do_git(self, argv):
         """ """
         git.onecmd(argv)
+
+    def do_push(self, argv):
+        """
+        上传最新脚本,实际使用 git 进线推送。 参数作为 commit 的 信息，默认使用当前时间。
+
+        """
+
+        msg = argv
+        if not msg:
+            now = datetime.now()  # current date and time
+            msg = now.strftime("%m/%d/%Y, %H:%M:%S")
+
+        cmd = '''
+                git add . &&
+                git cm '{}' &&
+                git push
+              '''.format(msg)
+
+        print(cmd)
+        bash(cmd)
 
 
 if __name__ == '__main__':
@@ -57,9 +83,7 @@ if __name__ == '__main__':
     sip.prompt = '> '
     command = ' '.join(args)
     if command:
-        code = sip.onecmd(command)
-        print(code)
+        if sip.onecmd(command):
+            sip.cmdloop()
     else:
-        # noinspection PyTypeChecker
-        sip.do_help(None)
         sip.cmdloop()
