@@ -93,7 +93,7 @@ class Sip(LiCmd):
             else:
                 cmd = '''
                         git add .  &&
-                        git commit -m '{}'  &&
+                        git commit -m "{}"  &&
                         git push
                       '''.format(msg)
                 run(cmd)
