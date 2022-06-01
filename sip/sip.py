@@ -25,7 +25,8 @@ class Sip(LiCmd):
     def do_debug(self, argv):
         """
         日志级别调整为 DEBUG , 提示符更改为 #
-        -i 将日志级别调整为INFO ,提示符更改为 >
+
+         -i 将日志级别调整为INFO ,提示符更改为 >
         """
         if short_opts_exits(argv, 'i'):
             li_log.set_format()
@@ -61,8 +62,7 @@ class Sip(LiCmd):
         git.onecmd(argv)
 
     def do_pull(self, argv):
-        """
-        更新脚本至最新脚本，使用 git 命令是实现的
+        """更新脚本至最新脚本，使用 git 命令是实现的
         -b 更新前自动备份，备份使用当前的 commit 摘要
         """
 
