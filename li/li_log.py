@@ -43,10 +43,10 @@ def print_table(big_arr: Union[list, tuple]):
 
                 # expand the arr to fixed_widths size to prevent out of range error
                 expand = tuple(arr) + ('',) * (len(fixed_widths) - len(arr))
-                print(template.format(*expand))
+                return template.format(*expand)
             else:
-                print(arr)
+                return arr
 
         return
 
-    print(big_arr)
+    return big_arr
