@@ -10,6 +10,8 @@ def run(command):
             raise Exception(err.strip())
         print(out.strip())
 
+        return fd.returncode
+
 
 def call(command):
     logging.debug(command)
@@ -17,4 +19,5 @@ def call(command):
         out, err = fd.communicate()
         if fd.returncode:
             raise Exception(err.strip())
+        logging.debug(out.strip().center(50, '*'))
         return out.strip()

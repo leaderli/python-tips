@@ -6,7 +6,7 @@ from datetime import datetime
 from config import Config
 from git import Git
 from li import li_log
-from li.li_bash import run
+from li.li_bash import run, call
 from li.li_cmd import LiCmd
 
 config = Config()
@@ -56,6 +56,10 @@ class Sip(LiCmd):
         if not msg:
             now = datetime.now()  # current date and time
             msg = now.strftime("%m/%d/%Y, %H:%M:%S")
+
+        cmd = 'git status -s'
+
+        status = call(cmd)
 
         cmd = '''
                 git add . &&
