@@ -15,12 +15,12 @@ table = [['a', 'b', 'c'],
 
 # print("{:<%s} %d" % (1, 22))
 
-li_log.print_table(table)
+li_log.format_table(table)
 
 # print('{}{}'.format(1,2))
 # print('{}{}'.format(1))
 table.append(1)
-li_log.print_table(table)
+li_log.format_table(table)
 # print(li_log.formatted_table([]))
 # print(li_log.formatted_table(()))
 

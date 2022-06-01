@@ -1,4 +1,3 @@
-import getopt
 import logging
 
 
@@ -6,20 +5,11 @@ def __basic_config__(level):
     logging.basicConfig(level=level, format='%(levelname)s:%(message)s')
 
 
-def set_log(argv):
-    short_opts = "d"
-    long_opts = ["debug"]
-
-    print(print_table(argv))
-    opts, args = getopt.getopt(argv, short_opts, long_opts)
-
-    for opt, param in opts:
-        if opt in ('-d', '--debug'):
-            __basic_config__(logging.DEBUG)
-            print('----------------d------------')
+def set_debug():
+    __basic_config__(logging.DEBUG)
 
 
-def print_table(big_arr):
+def format_table(big_arr):
     """
         print table like data with fixed width
     """

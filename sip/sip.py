@@ -1,10 +1,11 @@
+import getopt
 import os
 import sys
 
 from config import Config
 from git import Git
+from li import li_log
 from li.li_cmd import LiCmd
-from li.li_log import set_log
 
 config = Config()
 
@@ -37,11 +38,20 @@ class Sip(LiCmd):
 
 
 if __name__ == '__main__':
+    argv = sys.argv[1:]
+    short_opts = "d"
+    long_opts = ["debug"]
 
-    set_log(sys.argv[1:])
+    opts, args = getopt.getopt(argv, short_opts, long_opts)
+
+    for opt, param in opts:
+        if opt in ('-d', '--debug'):
+            li_log.set_debug()
+            argv.remove(opt)
+
     sip = Sip()
     sip.prompt = '> '
-    command = ' '.join(sys.argv[1:])
+    command = ' '.join(argv)
     if command:
         sip.onecmd(command)
     else:
