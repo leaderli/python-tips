@@ -66,6 +66,8 @@ class Sip(LiCmd):
         """
         sha = call('git rev-parse --short HEAD')
 
+        run('git reset --hard HEAD')
+        run('git pull')
         pass
 
     def do_push(self, argv):
@@ -97,11 +99,6 @@ class Sip(LiCmd):
                         git push
                       '''.format(msg)
                 run(cmd)
-
-            # run("""git add . && git commit -m   '{}' && git push""".format(msg))
-            # run2("""git add . && git commit -m   '{}' && git push""".format(msg))
-            # run2(("git", "add", ".", "&&", "git", "commit", "-m", "'123'"))
-            # os.system(cmd)
 
 
 if __name__ == '__main__':
