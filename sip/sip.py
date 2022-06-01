@@ -46,7 +46,7 @@ class Sip(LiCmd):
         """ """
         git.onecmd(argv)
 
-    def do_pull(self):
+    def do_pull(self, argv):
         """
         更新脚本，会自动备份当前脚本，并强制下载最新脚本，需要在配置文件中配置 git 地址，配置项key为git 。
         仅支持使用ssh，需要自己去设定免密相关
