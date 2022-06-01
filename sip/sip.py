@@ -90,15 +90,13 @@ class Sip(LiCmd):
             #         git push
             #       '''.format(msg)
             # call(cmd)
-            run('git add . ')
-            run("git commit -m   'test'")
-            run('git push ')
+            run("git add . && git commit -m   'test' && git push")
 
 
 if __name__ == '__main__':
 
     sip = Sip()
-    
+
     sip.prompt = '> '
 
     args = sys.argv[1:]
