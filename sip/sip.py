@@ -61,6 +61,9 @@ class Sip(LiCmd):
 
         status = call(cmd)
 
+
+
+
         cmd = '''
                 git add . &&
                 git commit -m '{}' &&

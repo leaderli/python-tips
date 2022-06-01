@@ -9,6 +9,8 @@ def set_debug():
     __basic_config__(logging.DEBUG)
 
 
+
+
 def format_table(big_arr):
     """
         print table like data with fixed width
