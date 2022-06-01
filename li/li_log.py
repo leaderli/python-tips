@@ -1,12 +1,11 @@
 import logging
 
 
-def __basic_config__(level):
+def set_format(level=logging.INFO):
     logging.basicConfig(level=level, format='%(levelname)s:%(message)s')
 
 
-def set_debug():
-    __basic_config__(logging.DEBUG)
+
 
 
 

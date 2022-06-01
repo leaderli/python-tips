@@ -1,4 +1,4 @@
-import getopt
+import logging
 import os
 import sys
 from datetime import datetime
@@ -8,6 +8,7 @@ from git import Git
 from li import li_log
 from li.li_bash import run, call
 from li.li_cmd import LiCmd
+from li.li_getopt import short_opts_exits
 
 config = Config()
 
@@ -19,6 +20,21 @@ class Sip(LiCmd):
     def do_config(self, argv):
         """ """
         config.onecmd(argv)
+
+    def do_debug(self, argv):
+        """
+        日志级别调整为 DEBUG , 提示符更改为 $
+        -i 将日志级别调整为INFO ,提示符更改为 >
+        """
+        if short_opts_exits(argv, 'i'):
+            li_log.set_format()
+            sip.prompt = '> '
+        else:
+            li_log.set_format(logging.DEBUG)
+            sip.prompt = '$ '
+
+        logging.debug('test')
+        logging.info('test')
 
     def do_env(self, argv):
         """
@@ -53,6 +69,7 @@ class Sip(LiCmd):
         """
         sha = call('git rev-parse --short HEAD')
 
+        self.prompt = '# '
         pass
 
     def do_push(self, argv):
@@ -81,19 +98,16 @@ class Sip(LiCmd):
 
 
 if __name__ == '__main__':
-    args = sys.argv[1:]
-    short_opts = "d"
-    long_opts = ["debug"]
-
-    opts = getopt.getopt(args, short_opts, long_opts)[0]
-
-    for opt, param in opts:
-        if opt in ('-d', '--debug'):
-            li_log.set_debug()
-            args.remove(opt)
 
     sip = Sip()
     sip.prompt = '> '
+
+    args = sys.argv[1:]
+    opt = short_opts_exits(args, 'd')
+    if opt:
+        li_log.set_format(logging.DEBUG)
+        args.remove(opt)
+
     command = ' '.join(args)
     if command:
         if sip.onecmd(command):
