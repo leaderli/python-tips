@@ -61,17 +61,15 @@ class Sip(LiCmd):
 
         status = call(cmd)
 
+        if status:
 
+            cmd = '''
+                    git add . &&
+                    git commit -m '{}' &&
+                    git push
+                  '''.format(msg)
 
-
-        cmd = '''
-                git add . &&
-                git commit -m '{}' &&
-                git push
-              '''.format(msg)
-
-        print(run('git status -s '))
-        print(run(cmd))
+            run(cmd)
 
 
 if __name__ == '__main__':
