@@ -6,7 +6,7 @@ from datetime import datetime
 from config import Config
 from git import Git
 from li import li_log
-from li.li_bash import call, run2, run
+from li.li_bash import call, run
 from li.li_cmd import LiCmd
 from li.li_getopt import short_opts_exits
 
@@ -77,20 +77,26 @@ class Sip(LiCmd):
         msg = argv
         if not msg:
             now = datetime.now()  # current date and time
-            msg = now.strftime("%m/%d/%Y, %H:%M:%S")
+            msg = now.strftime("%m%d%Y, %H%M%S")
 
         cmd = 'git status -s'
 
         status = call(cmd)
 
-        run('echo $(pwd)')
         if status:
-            cmd = '''
-                    git add . 
-                    git commit -m '{}' 
-                    git push
-                  '''.format(msg)
-            run(cmd)
+            import platform
+
+            if platform.system() == 'Windows':
+                run('git add .')
+                run("git commit -m '{}'".format(msg))
+                run('git push')
+            else:
+                cmd = '''
+                        git add .  &&
+                        git commit -m '{}'  &&
+                        git push
+                      '''.format(msg)
+                run(cmd)
 
             # run("""git add . && git commit -m   '{}' && git push""".format(msg))
             # run2("""git add . && git commit -m   '{}' && git push""".format(msg))
