@@ -72,7 +72,7 @@ class Sip(LiCmd):
         if not status:
             print('no change from origin')
             return
-        if short_opts_exits(argv, '-b'):
+        if short_opts_exits(argv, 'b'):
             sha = call('git rev-parse --short HEAD')
             run('cd .. && zip -r {name}.{sha}.zip {name}'.format(name='python-tips', sha=sha))
         run('git reset --hard HEAD')
