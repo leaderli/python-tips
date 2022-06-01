@@ -77,7 +77,7 @@ class Sip(LiCmd):
         msg = argv
         if not msg:
             now = datetime.now()  # current date and time
-            msg = now.strftime("%m%d%Y %H%M%S")
+            msg = now.strftime("%m%d%Y  %H%M%S")
 
         cmd = 'git status -s'
 
@@ -88,7 +88,7 @@ class Sip(LiCmd):
 
             if platform.system() == 'Windows':
                 run('git add .')
-                run("git commit -m '{}'".format(msg))
+                run('git commit -m "{}"'.format(msg))
                 run('git push')
             else:
                 cmd = '''
