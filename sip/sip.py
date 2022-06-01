@@ -65,6 +65,13 @@ class Sip(LiCmd):
         更新脚本，会自动备份当前脚本，并强制下载最新脚本，需要在配置文件中配置 git 地址，配置项key为git 。
         仅支持使用ssh，需要自己去设定免密相关
         """
+
+        run('git fetch --all')
+        status = call('git diff origin/HEAD -stat')
+
+        if not status:
+            print('no change from origin')
+            return
         if short_opts_exits(argv, '-b'):
             sha = call('git rev-parse --short HEAD')
             run('cd .. && zip -r {name}.{sha}.zip {name}'.format(name='python-tips', sha=sha))
@@ -83,9 +90,7 @@ class Sip(LiCmd):
             now = datetime.now()  # current date and time
             msg = now.strftime("%Y%m%d  %H%M%S")
 
-        cmd = 'git status -s'
-
-        status = call(cmd)
+        status = call('git status -s')
 
         if status:
             import platform
