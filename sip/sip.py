@@ -35,8 +35,8 @@ class Sip(LiCmd):
     def do_pwd(self, argv):
         """ get sip.py directory"""
 
-        print(os.path)
         print(os.getcwd())
+        print(__file__)
 
     def do_git(self, argv):
         """ """
