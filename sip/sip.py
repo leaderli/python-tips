@@ -46,6 +46,15 @@ class Sip(LiCmd):
         """ """
         git.onecmd(argv)
 
+    def do_pull(self):
+        """
+        更新脚本，会自动备份当前脚本，并强制下载最新脚本，需要在配置文件中配置 git 地址，配置项key为git 。
+        仅支持使用ssh，需要自己去设定免密相关
+        """
+        sha = call('git rev-parse --short HEAD')
+
+        pass
+
     def do_push(self, argv):
         """
         上传最新脚本,实际使用 git 进线推送。 参数作为 commit 的 信息，默认使用当前时间。
@@ -62,7 +71,6 @@ class Sip(LiCmd):
         status = call(cmd)
 
         if status:
-
             cmd = '''
                     git add . &&
                     git commit -m '{}' &&
