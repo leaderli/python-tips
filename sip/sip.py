@@ -79,7 +79,7 @@ class Sip(LiCmd):
         msg = argv
         if not msg:
             now = datetime.now()  # current date and time
-            msg = now.strftime("$Y%m%d  %H%M%S")
+            msg = now.strftime("%Y%m%d  %H%M%S")
 
         cmd = 'git status -s'
 
