@@ -59,11 +59,12 @@ class Sip(LiCmd):
 
         cmd = '''
                 git add . &&
-                git cm '{}' &&
+                git commit -m '{}' &&
                 git push
               '''.format(msg)
 
         print(cmd)
+        print(bash('git status'))
         print(bash(cmd))
 
 
