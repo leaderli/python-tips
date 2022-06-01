@@ -66,6 +66,7 @@ class Sip(LiCmd):
         仅支持使用ssh，需要自己去设定免密相关
         """
         sha = call('git rev-parse --short HEAD')
+        run('cd .. && zip -rm sip.{}.zip'.format(sha))
         run('git reset --hard HEAD')
         run('git pull')
         pass
