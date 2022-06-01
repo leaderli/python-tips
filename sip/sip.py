@@ -1,5 +1,6 @@
 import logging
 import os
+import re
 import sys
 from datetime import datetime
 
@@ -65,7 +66,7 @@ class Sip(LiCmd):
         仅支持使用ssh，需要自己去设定免密相关
         """
         sha = call('git rev-parse --short HEAD')
-
+        print(sha)
         run('git reset --hard HEAD')
         run('git pull')
         pass
@@ -105,9 +106,12 @@ if __name__ == '__main__':
 
     sip = Sip()
 
+    print(re.sub(r'sip/sip.py$', '', __file__))
+    os.chdir(re.sub(r'sip/sip.py$', '', __file__))
     sip.prompt = '> '
 
     args = sys.argv[1:]
+    # -d 直接进入debug模式
     opt = short_opts_exits(args, 'd')
     if opt:
         sip.do_debug('')
