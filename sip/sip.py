@@ -14,27 +14,38 @@ git = Git()
 
 class Sip(LiCmd):
 
-    def do_config(self, args):
+    def do_config(self, argv):
         """ """
-        config.onecmd(args)
+        config.onecmd(argv)
 
-    def do_env(self, args):
+    def do_env(self, argv):
         """ get environment variable , same as printenv"""
         if args:
-            print('{}={}'.format(args, os.environ.get(args)))
+            print('{}={}'.format(argv, os.environ.get(argv)))
         else:
             print(os.environ)
             for k, v in os.environ.items():
                 print('{}={}'.format(k, v))
 
-    def do_exit(self, args):
+    def do_exit(self, argv):
         """exit the program."""
         print("bye.")
         exit(0)
 
-    def do_git(self, args):
+    def do_pwd(self, argv):
+        """ get sip.py directory"""
+
+        print(os.path)
+        print(os.getcwd())
+
+    def do_git(self, argv):
         """ """
-        git.onecmd(args)
+        git.onecmd(argv)
+
+    def help_config(self, argv):
+
+        print(argv)
+        config.do_help(None)
 
 
 if __name__ == '__main__':
