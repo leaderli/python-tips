@@ -63,8 +63,7 @@ class Sip(LiCmd):
                 git push
               '''.format(msg)
 
-        print(cmd)
-        print(bash('git status'))
+        print(bash('git status -s '))
         print(bash(cmd))
 
 
