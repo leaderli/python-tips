@@ -144,7 +144,10 @@ class Sip(LiCmd):
 
         keys = line.split()
 
-        # 去掉 config  
+        # 当最后一位为待补全时，剔除
+        if text:
+            keys.pop()
+        # 去掉 config
         keys.reverse()
         keys.pop()
 
