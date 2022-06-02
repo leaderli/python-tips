@@ -141,18 +141,19 @@ class Sip(LiCmd):
                 run(cmd)
 
     def complete_config(self, text, line, begin_idx, end_idx):
-        argv = text.strip().split()
-        print('argv',argv)
-        print('line',line)
-        #
-        # last = argv.pop()
-        #
-        # argv.reverse()
+
+        keys = line.split()
+
+        # 去头去尾
+        keys.pop()
+        keys.reverse()
+        keys.pop()
+
         d = self.__config
         #
-        # while argv:
-        #     key = argv.pop()
-        #     d = d.get(key, {})
+        while keys:
+            key = keys.pop()
+            d = d.get(key, {})
 
         return [k for k in d.keys() if k.startswith(text)]
 
