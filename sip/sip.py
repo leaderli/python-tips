@@ -141,18 +141,18 @@ class Sip(LiCmd):
                 run(cmd)
 
     def complete_config(self, text, line, begin_idx, end_idx):
-        argv = text.strip().split()
-
-        last = argv.pop()
-
-        argv.reverse()
+        # argv = text.strip().split()
+        #
+        # last = argv.pop()
+        #
+        # argv.reverse()
         d = self.__config
+        #
+        # while argv:
+        #     key = argv.pop()
+        #     d = d.get(key, {})
 
-        while argv:
-            key = argv.pop()
-            d = d.get(key, {})
-
-        return [k for k in d.keys() if k.startswith(last)]
+        return [k for k in d.keys() if k.startswith(text)]
 
     def complete_debug(self, text, line, begin_idx, end_idx):
 
