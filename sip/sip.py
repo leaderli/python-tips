@@ -5,12 +5,15 @@ import sys
 from datetime import datetime
 
 import yaml
+from li import li_decorator
 from li import li_log
 from li.li_bash import call, run
 from li.li_cmd import LiCmd
+from li.li_decorator import run_on_uat
 from li.li_getopt import single_short_opts_exits
 
 SIP_CONFIG_FILES = 'SIP_CONFIG_FILES'
+SIP_ENV = 'com_pccc_sip_env'
 
 
 def complete_keys(keys, prefix):
@@ -63,10 +66,10 @@ class Sip(LiCmd):
         """
         if single_short_opts_exits(argv, 'i'):
             li_log.set_format()
-            sip.prompt = '> '
+            self.prompt = '> '
         else:
             li_log.set_format(logging.DEBUG)
-            sip.prompt = '# '
+            self.prompt = '# '
 
     def do_env(self, argv):
         """
@@ -112,6 +115,7 @@ class Sip(LiCmd):
         run('git pull')
         exit()
 
+    @run_on_uat
     def do_push(self, argv):
         """
         上传最新脚本,实际使用 git 进线推送。 参数作为 commit 的 信息，默认使用当前时间。
@@ -172,9 +176,9 @@ class Sip(LiCmd):
         return complete_keys(os.environ.keys(), text)
 
 
-if __name__ == '__main__':
-
+def main():
     os.chdir(re.sub(r'sip/sip.py$', '', __file__))
+    li_decorator.env = os.environ.get(SIP_ENV, '')
 
     sip = Sip()
 
@@ -193,3 +197,7 @@ if __name__ == '__main__':
             sip.cmdloop()
     else:
         sip.cmdloop()
+
+
+if __name__ == '__main__':
+    main()
