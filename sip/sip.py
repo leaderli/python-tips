@@ -99,7 +99,7 @@ class Sip(LiCmd):
                       '''.format(msg)
                 run(cmd)
 
-    def complete_env(self, text: str, state: int):
+    def complete_env(self, text, line, begin_idx, end_idx):
 
         return [k for k in os.environ.keys()]
 
