@@ -101,7 +101,7 @@ class Sip(LiCmd):
 
     def complete_env(self, text: str, state: int):
 
-        return os.environ.keys()
+        return [k for k in os.environ.keys()]
 
 
 if __name__ == '__main__':
