@@ -9,3 +9,6 @@ hello:
     map:
       k1: k1
       k2: k2
+
+sip:
+  log: /app/sip.log

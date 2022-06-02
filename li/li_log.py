@@ -4,6 +4,25 @@ import logging
 logging.basicConfig(format='%(message)s')
 
 
+def get_logger(name, file):
+    # create logger for prd_ci
+    log = logging.getLogger(name)
+    log.setLevel(level=logging.INFO)
+
+    # create formatter and add it to the handlers
+    formatter = logging.Formatter('%(asctime)s  %(message)s')
+
+    # create file handler for logger.
+    fh = logging.FileHandler(file)
+    fh.setLevel(level=logging.DEBUG)
+    fh.setFormatter(formatter)
+
+    # add handlers to logger.
+    log.addHandler(fh)
+    log.propagate = False
+    return log
+
+
 def set_format(level=logging.INFO):
     logging.root.setLevel(level)
     logging.debug('test')

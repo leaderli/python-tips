@@ -11,6 +11,7 @@ from li.li_bash import call, run
 from li.li_cmd import LiCmd
 from li.li_decorator import run_on_uat
 from li.li_getopt import single_short_opts_exits
+from li.li_util import deep_get
 
 SIP_CONFIG_FILES = 'SIP_CONFIG_FILES'
 SIP_ENV = 'com_pccc_sip_env'
@@ -39,6 +40,7 @@ class Sip(LiCmd):
             with open(config_file) as f:
                 self.__config.update(yaml.load(f.read(), Loader=yaml.Loader))
 
+        super().__log__(li_log.get_logger('sip', deep_get(self.__config, ['sip', 'log']) or 'sip.log'))
         pass
 
     def do_config(self, argv):
@@ -49,13 +51,8 @@ class Sip(LiCmd):
         """
 
         argv = argv.split()
-        argv.reverse()
         d = self.__config
-
-        while argv:
-            key = argv.pop()
-            d = d.get(key, {})
-
+        d = deep_get(d, argv)
         print(d)
 
     def do_debug(self, argv):
@@ -157,12 +154,14 @@ class Sip(LiCmd):
 
         d = self.__config
         #
-        while keys:
-            key = keys.pop()
-            d = d.get(key, {})
 
-            if not isinstance(d, dict):
-                break
+        d = deep_get(d, keys, reversed=False)
+        # while keys:
+        #     key = keys.pop()
+        #     d = d.get(key, {})
+        #
+        #     if not isinstance(d, dict):
+        #         break
 
         if isinstance(d, dict):
             return list(map(lambda x: x + " ", [k for k in d.keys() if k.startswith(text)]))
