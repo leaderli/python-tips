@@ -101,7 +101,7 @@ class Sip(LiCmd):
 
     def complete_env(self, text, line, begin_idx, end_idx):
 
-        return [k for k in os.environ.keys()]
+        return [k for k in os.environ.keys() if k.startswith(text)]
 
 
 if __name__ == '__main__':
