@@ -147,7 +147,6 @@ class Sip(LiCmd):
         # 去头去尾
         keys.pop()
         keys.reverse()
-        keys.pop()
 
         d = self.__config
         #
