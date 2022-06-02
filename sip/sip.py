@@ -35,7 +35,6 @@ class Sip(LiCmd):
                 config_file = os.path.join(os.getcwd(), 'sip', config_file)
             with open(config_file) as f:
                 self.__config.update(yaml.load(f.read(), Loader=yaml.Loader))
-                print(self.__config)
 
         pass
 
@@ -142,8 +141,7 @@ class Sip(LiCmd):
                 run(cmd)
 
     def complete_config(self, text, line, begin_idx, end_idx):
-        print(text)
-        print(line)
+        print('-->',text)
         pass
 
     def complete_debug(self, text, line, begin_idx, end_idx):
