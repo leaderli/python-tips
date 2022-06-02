@@ -99,6 +99,10 @@ class Sip(LiCmd):
                       '''.format(msg)
                 run(cmd)
 
+    def complete_env(self, text: str, state: int):
+
+        return os.environ.keys()
+
 
 if __name__ == '__main__':
 
