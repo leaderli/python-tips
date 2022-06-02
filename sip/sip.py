@@ -99,6 +99,9 @@ class Sip(LiCmd):
                       '''.format(msg)
                 run(cmd)
 
+    def complete_debug(self, text, line, begin_idx, end_idx):
+        return ['-i']
+
     def complete_env(self, text, line, begin_idx, end_idx):
 
         return [k for k in os.environ.keys() if k.startswith(text)]
