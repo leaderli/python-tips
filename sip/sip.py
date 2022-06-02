@@ -8,7 +8,7 @@ import yaml
 from li import li_log
 from li.li_bash import call, run
 from li.li_cmd import LiCmd
-from li.li_getopt import short_opts_exits
+from li.li_getopt import single_short_opts_exits
 
 SIP_CONFIG_FILES = 'SIP_CONFIG_FILES'
 
@@ -42,9 +42,19 @@ class Sip(LiCmd):
     def do_config(self, argv):
         """
         查看当前环境的配置项，不同环境的配置文件可通过配置环境变量 SIP_CONFIG_FILES来设定环境相关的配置文件，环境相关的配置文件可指定多个，靠后的配置项覆盖前面的
+
+         可指定多个参数，查找指定key的值，
         """
-        print(self.__config)
-        pass
+
+        argv = argv.split()
+        argv.reverse()
+        d = self.__config
+
+        while argv:
+            key = argv.pop()
+            d = d.get(key, {})
+
+        print(d)
 
     def do_debug(self, argv):
         """
@@ -52,7 +62,7 @@ class Sip(LiCmd):
 
          -i 将日志级别调整为INFO ,提示符更改为 >
         """
-        if short_opts_exits(argv, 'i'):
+        if single_short_opts_exits(argv, 'i'):
             li_log.set_format()
             sip.prompt = '> '
         else:
@@ -96,7 +106,7 @@ class Sip(LiCmd):
         if not status:
             print('no change from origin')
             return
-        if short_opts_exits(argv, 'b'):
+        if single_short_opts_exits(argv, 'b'):
             sha = call('git rev-parse --short HEAD')
             run('cd .. && zip -r {name}.{sha}.zip {name}'.format(name='python-tips', sha=sha))
         run('git reset --hard HEAD')
@@ -131,6 +141,11 @@ class Sip(LiCmd):
                       '''.format(msg)
                 run(cmd)
 
+    def complete_config(self, text, line, begin_idx, end_idx):
+        print(text)
+        print(line)
+        pass
+
     def complete_debug(self, text, line, begin_idx, end_idx):
 
         return complete_keys(('-i',), text)
@@ -150,8 +165,8 @@ if __name__ == '__main__':
 
     args = sys.argv[1:]
     # -d 直接进入debug模式
-    opt = short_opts_exits(args, 'd')
-    if opt:
+    opt = single_short_opts_exits(args, 'd')
+    if single_short_opts_exits(args, 'd'):
         sip.do_debug('')
         args.remove(opt)
 
