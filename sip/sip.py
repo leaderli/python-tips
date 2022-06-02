@@ -4,10 +4,13 @@ import re
 import sys
 from datetime import datetime
 
+import yaml
 from li import li_log
 from li.li_bash import call, run
 from li.li_cmd import LiCmd
 from li.li_getopt import short_opts_exits
+
+SIP_CONFIG_FILES = 'SIP_CONFIG_FILES'
 
 
 def complete_keys(keys, prefix):
@@ -16,8 +19,27 @@ def complete_keys(keys, prefix):
 
 class Sip(LiCmd):
 
+    def __init__(self):
+        super().__init__()
+
+        self.__config = {}
+
+        config_files = os.environ.get(SIP_CONFIG_FILES) or []
+        if config_files:
+            config_files = config_files.split(',')
+        config_files.insert(0, 'sip.yaml')
+        for config_file in config_files:
+            with open(os.path.join(os.getcwd(), 'sip', config_file)) as f:
+                self.__config.update(yaml.load(f.read(), Loader=yaml.Loader))
+                print(self.__config)
+
+        pass
+
     def do_config(self, argv):
-        """ """
+        """
+        查看当前环境的配置项，不同环境的配置文件可通过配置环境变量 SIP_CONFIG_FILES来设定环境相关的配置文件，环境相关的配置文件可指定多个，靠后的配置项覆盖前面的
+        """
+        print(self.__config)
         pass
 
     def do_debug(self, argv):
@@ -52,8 +74,10 @@ class Sip(LiCmd):
         exit(0)
 
     def do_pwd(self, argv):
-        """ get sip.py absolute path """
-        print(__file__)
+        """
+        脚本的根目录，即该脚本的绝对路径 去除sip/sip.py后
+        """
+        print(os.getcwd())
 
     def do_pull(self, argv):
         """
@@ -104,7 +128,7 @@ class Sip(LiCmd):
                 run(cmd)
 
     def complete_debug(self, text, line, begin_idx, end_idx):
-       
+
         return complete_keys(('-i',), text)
 
     def complete_env(self, text, line, begin_idx, end_idx):
@@ -114,9 +138,10 @@ class Sip(LiCmd):
 
 if __name__ == '__main__':
 
+    os.chdir(re.sub(r'sip/sip.py$', '', __file__))
+
     sip = Sip()
 
-    os.chdir(re.sub(r'sip/sip.py$', '', __file__))
     sip.prompt = '> '
 
     args = sys.argv[1:]
