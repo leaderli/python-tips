@@ -157,7 +157,7 @@ class Sip(LiCmd):
             key = keys.pop()
             d = d.get(key, {})
 
-        return [k for k in d.keys() if k.startswith(text)]
+        return map(lambda x: x + " ", [k for k in d.keys() if k.startswith(text)])
 
     def complete_debug(self, text, line, begin_idx, end_idx):
 
