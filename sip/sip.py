@@ -4,23 +4,17 @@ import re
 import sys
 from datetime import datetime
 
-from config import Config
-from git import Git
 from li import li_log
 from li.li_bash import call, run
 from li.li_cmd import LiCmd
 from li.li_getopt import short_opts_exits
-
-config = Config()
-
-git = Git()
 
 
 class Sip(LiCmd):
 
     def do_config(self, argv):
         """ """
-        config.onecmd(argv)
+        pass
 
     def do_debug(self, argv):
         """
@@ -57,14 +51,10 @@ class Sip(LiCmd):
         """ get sip.py absolute path """
         print(__file__)
 
-    def do_git(self, argv):
-        """ """
-        git.onecmd(argv)
-
     def do_pull(self, argv):
         """
         更新脚本至最新脚本，使用 git 命令是实现的
-        
+
         -b 更新前自动备份，备份使用当前的 commit 摘要
         """
 
