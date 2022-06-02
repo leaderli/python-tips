@@ -141,7 +141,8 @@ class Sip(LiCmd):
                 run(cmd)
 
     def complete_config(self, text, line, begin_idx, end_idx):
-        # argv = text.strip().split()
+        argv = text.strip().split()
+        print(argv)
         #
         # last = argv.pop()
         #
