@@ -10,6 +10,10 @@ from li.li_cmd import LiCmd
 from li.li_getopt import short_opts_exits
 
 
+def complete_keys(keys, prefix):
+    return [k for k in keys if k.startswith(prefix)]
+
+
 class Sip(LiCmd):
 
     def do_config(self, argv):
@@ -100,11 +104,12 @@ class Sip(LiCmd):
                 run(cmd)
 
     def complete_debug(self, text, line, begin_idx, end_idx):
-        return ['-i']
+       
+        return complete_keys(('-i',), text)
 
     def complete_env(self, text, line, begin_idx, end_idx):
 
-        return [k for k in os.environ.keys() if k.startswith(text)]
+        return complete_keys(os.environ.keys(), text)
 
 
 if __name__ == '__main__':
