@@ -28,8 +28,12 @@ class Sip(LiCmd):
         if config_files:
             config_files = config_files.split(',')
         config_files.insert(0, 'sip.yaml')
+
         for config_file in config_files:
-            with open(os.path.join(os.getcwd(), 'sip', config_file)) as f:
+            # 相对路径地址
+            if not config_file.startswith("/"):
+                config_file = os.path.join(os.getcwd(), 'sip', config_file)
+            with open(config_file) as f:
                 self.__config.update(yaml.load(f.read(), Loader=yaml.Loader))
                 print(self.__config)
 
