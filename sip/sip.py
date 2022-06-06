@@ -7,7 +7,7 @@ from datetime import datetime
 import yaml
 from li import li_decorator
 from li import li_log
-from li.li_bash import call, run
+from li.li_bash import call, run, ssh_call
 from li.li_cmd import LiCmd
 from li.li_decorator import run_on_uat
 from li.li_getopt import single_short_opts_exits
@@ -179,6 +179,10 @@ class Sip(LiCmd):
     def complete_env(self, text, line, begin_idx, end_idx):
 
         return complete_keys(os.environ.keys(), text)
+
+    def do_test(self, argv):
+
+        ssh_call('li@centos7', '~', 'ls -l')
 
 
 def main():

@@ -1,4 +1,5 @@
-from  li.li_bash import  ssh_call
+from li.li_bash import ssh_call, call
+
 # import subprocess
 #
 # r = subprocess.Popen(['echo', 'hello'], stdout=subprocess.PIPE, universal_newlines=True)
@@ -11,4 +12,7 @@ from  li.li_bash import  ssh_call
 # print(r.stdout.read())
 # print('-' * 100)
 
-ssh_call('li@192.168.142.128','~','ll')
+# ssh_call('li@centos7','~','ll')
+
+
+call(""" ssh -q li@centos7  'ls -l' """)
