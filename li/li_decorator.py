@@ -13,12 +13,3 @@ def run_on_uat(func):
     return wrapper
 
 
-def log_args(func):
-    @functools.wraps(func)
-    def wrapper(*args, **kwargs):
-        # print(*args)
-        # print(**kwargs)
-        logging.debug(str(args) + str(kwargs))
-        return func(*args, **kwargs)
-
-    return wrapper

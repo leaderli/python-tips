@@ -1,6 +1,5 @@
 import logging
 
-from li.li_decorator import log_args
 
 
 class Log(object):
@@ -23,7 +22,6 @@ class Log(object):
         return self._func(*_args, **_kwargs)
 
 
-@log_args
 @Log
 def hello(name):
     return 'hello ' + name
@@ -32,7 +30,6 @@ def hello(name):
 logging.root.setLevel(logging.DEBUG)
 
 
-@log_args
 @Log(name='li')
 def hello2(name):
     return 'hello ' + name
@@ -42,7 +39,6 @@ def hello2(name):
 # print(hello2('two'))
 
 
-@log_args
 def hello3(name='li', age=10,**kwargs):
     print(name)
     print(age)
