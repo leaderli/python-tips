@@ -1,7 +1,7 @@
 import logging
 
-# logging.basicConfig(format='%(levelname)s:%(message)s')
-logging.basicConfig(format='%(message)s')
+logging.basicConfig(format='%(levelname)s:%(message)s')
+# logging.basicConfig(format='%(message)s')
 
 
 def get_logger(name, file):
