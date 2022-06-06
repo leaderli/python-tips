@@ -43,10 +43,10 @@ def hello2(name):
 
 
 @log_args
-def hello3(name='li', age=10):
+def hello3(name='li', age=10,**kwargs):
     print(name)
     print(age)
     pass
 
 
-hello3('fuck')
+hello3('fuck',a=1,b=2)
