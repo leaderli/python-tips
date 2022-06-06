@@ -86,6 +86,12 @@ class Sip(LiCmd):
         print("bye.")
         exit(0)
 
+    def do_history(self, argv):
+        """ 查看命令历史，命令被记录为日志的形式，实际上是调用 vi 查看日志"""
+        log = deep_get(self.__config, ['sip', 'log']) or 'sip.log'
+
+        run('vi {}'.format(log))
+
     def do_pwd(self, argv):
         """
         脚本的根目录，即该脚本的绝对路径 去除sip/sip.py后
