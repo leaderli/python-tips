@@ -168,9 +168,18 @@ class Sip(LiCmd):
                 run(cmd)
 
     def complete_backup(self, text, line, begin_idx, end_idx):
-        apps = []
-        apps.append('-a')
-        return complete_keys(apps, text)
+
+        input_apps = line.split()
+        if '-a' in input_apps:
+            return None
+
+        backup_origin = deep_get(self.__config, ['backup', 'origin'])
+        origin_apps = list(map(lambda war: war.replace('.war', ''),
+                               [war for war in os.listdir(backup_origin) if war.endswith('.war')]))
+
+        un_input_apps = [war for war in origin_apps if war not in input_apps]
+        un_input_apps.append('-a')
+        return complete_keys(un_input_apps, text)
 
     def complete_config(self, text, line, begin_idx, end_idx):
 
