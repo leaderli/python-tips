@@ -21,6 +21,11 @@ def complete_keys(line, keys, prefix):
     input_keys = line.split()
     del input_keys[0]
     # 最后输入的是 - 则 提示补全的为所有 - 开头的命令
+
+    print()
+    print(input_keys)
+    print(prefix)
+    print('----------')
     if input_keys[-1] == '-':
         return list(map(lambda k: k.replace('-', ''),
                         [k for k in keys if k.startswith('-') and k not in input_keys]))
@@ -191,13 +196,13 @@ class Sip(LiCmd):
     def complete_config(self, text, line, begin_idx, end_idx):
 
         keys = line.split()
+        del keys[0]
 
         # 当最后一位为待补全时，剔除
         if text:
             keys.pop()
         # 去掉 config
         keys.reverse()
-        keys.pop()
 
         d = self.__config
         #
