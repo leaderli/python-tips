@@ -170,7 +170,7 @@ class Sip(LiCmd):
     def complete_backup(self, text, line, begin_idx, end_idx):
         apps = []
         apps.append('-a')
-        return apps
+        return complete_keys(apps, text)
 
     def complete_config(self, text, line, begin_idx, end_idx):
 
