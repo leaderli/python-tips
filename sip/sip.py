@@ -30,6 +30,7 @@ def complete_keys(line, keys, prefix):
         return list(map(lambda k: k.replace('-', ''),
                         [k for k in keys if k.startswith('-') and k not in input_keys]))
     else:
+        print([k for k in keys if k.startswith(prefix) and k not in input_keys])
         return [k for k in keys if k.startswith(prefix) and k not in input_keys]
 
 
