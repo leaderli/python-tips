@@ -3,3 +3,7 @@ git: git@github.com:leaderli/python-tips.git
 
 sip:
   log: /home/li/logs/sip.log
+
+backup:
+  origin: /home/li/backup
+  target: /home/li/backup
