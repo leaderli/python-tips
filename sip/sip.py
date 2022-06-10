@@ -23,9 +23,10 @@ def complete_keys(line, keys, prefix):
     # 最后输入的是 - 则 提示补全的为所有 - 开头的命令
 
     print()
-    print('is - ',input_keys[-1] == '-')
+    print(input_keys)
+    print(keys)
     print('----------')
-    if input_keys[-1] == '-':
+    if input_keys and input_keys[-1] == '-':
         print('->', list(map(lambda k: k.replace('-', ''),
                              [k for k in keys if k.startswith('-') and k not in input_keys])))
         return list(map(lambda k: k.replace('-', ''),
