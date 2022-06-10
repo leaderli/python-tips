@@ -17,8 +17,9 @@ SIP_CONFIG_FILES = 'SIP_CONFIG_FILES'
 SIP_ENV = 'com_pccc_sip_env'
 
 
-def complete_keys(keys, prefix):
-    return [k for k in keys if k.startswith(prefix)]
+def complete_keys(line, keys, prefix):
+    input_keys = line.split()
+    return [k for k in keys if k.startswith(prefix) and k not in input_keys]
 
 
 class Sip(LiCmd):
@@ -179,7 +180,7 @@ class Sip(LiCmd):
 
         un_input_apps = [war for war in origin_apps if war not in input_apps]
         un_input_apps.append('-a')
-        return complete_keys(un_input_apps, text)
+        return complete_keys(line, un_input_apps, text)
 
     def complete_config(self, text, line, begin_idx, end_idx):
 
@@ -208,11 +209,11 @@ class Sip(LiCmd):
 
     def complete_debug(self, text, line, begin_idx, end_idx):
 
-        return complete_keys(('-i',), text)
+        return complete_keys(line, ('-i',), text)
 
     def complete_env(self, text, line, begin_idx, end_idx):
 
-        return complete_keys(os.environ.keys(), text)
+        return complete_keys(line, os.environ.keys(), text)
 
 
 def main():
