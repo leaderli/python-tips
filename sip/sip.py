@@ -23,9 +23,6 @@ def complete_keys(line, keys, prefix):
     # 最后输入的是 - 则 提示补全的为所有 - 开头的命令
 
     print()
-    print(input_keys)
-    print(keys)
-    print('prefix',str(prefix),'prefix')
     print('is - ',input_keys[-1] == '-')
     print('----------')
     if input_keys[-1] == '-':
