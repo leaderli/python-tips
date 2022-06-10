@@ -25,8 +25,8 @@ def complete_keys(line, keys, prefix):
     print()
     print(input_keys)
     print(keys)
-    print(prefix)
-    print(input_keys[-1] == '-')
+    print('prefix',prefix)
+    print('is - ',input_keys[-1] == '-')
     print('----------')
     if input_keys[-1] == '-':
         print('->', list(map(lambda k: k.replace('-', ''),
