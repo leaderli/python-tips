@@ -1,14 +1,19 @@
 git: git@github.com:leaderli/python-tips.git
 
 hello:
-    test: 123
-    list:
-      - 1
-      - 2
-      - 3
-    map:
-      k1: k1
-      k2: k2
+  test: 123
+  list:
+    - 1
+    - 2
+    - 3
+  map:
+    k1: k1
+    k2: k2
 
 sip:
   log: /app/sip.log
+
+backup:
+  origin: /app/backup
+  target: /app/backup
+

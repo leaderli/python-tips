@@ -5,9 +5,9 @@ import sys
 from datetime import datetime
 
 import yaml
-from li import li_decorator
+from li import li_decorator, li_assert
 from li import li_log
-from li.li_bash import call, run, ssh_call
+from li.li_bash import call, run
 from li.li_cmd import LiCmd
 from li.li_decorator import run_on_uat
 from li.li_getopt import single_short_opts_exits
@@ -41,6 +41,26 @@ class Sip(LiCmd):
                 self.__config.update(yaml.load(f.read(), Loader=yaml.Loader))
 
         super().__log__(li_log.get_logger('sip', deep_get(self.__config, ['sip', 'log']) or 'sip.log'))
+        pass
+
+    def do_backup(self, argv):
+        """ 备份war包，默认备份为zip包，zip包以当天时间戳加上自增编号"""
+        backup_origin = deep_get(self.__config, ['backup', 'origin'])
+        backup_target = deep_get(self.__config, ['backup', 'target'])
+        li_assert.is_exist_dir(backup_origin)
+        li_assert.is_exist_dir(backup_target)
+        apps = argv.split()
+
+        logging.debug('prepare backup ' + str(apps))
+
+        if not apps:
+            print('no app to backup')
+            return
+
+        today = datetime.now().strftime('backup_%Y%m%d_')
+        num = len([z for z in os.listdir(backup_target) if z.endswith('.zip')]) + 1
+        backup_zip_name = today + str(num).zfill(3)
+        logging.debug('backup ' + backup_zip_name)
         pass
 
     def do_config(self, argv):
@@ -147,6 +167,11 @@ class Sip(LiCmd):
                       '''.format(msg)
                 run(cmd)
 
+    def complete_backup(self, text, line, begin_idx, end_idx):
+        apps = []
+        apps.append('-a')
+        return apps
+
     def complete_config(self, text, line, begin_idx, end_idx):
 
         keys = line.split()
@@ -179,10 +204,6 @@ class Sip(LiCmd):
     def complete_env(self, text, line, begin_idx, end_idx):
 
         return complete_keys(os.environ.keys(), text)
-
-    def do_test(self, argv):
-
-        ssh_call('li@centos7', '~', 'ls -l')
 
 
 def main():
