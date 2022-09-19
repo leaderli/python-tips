@@ -98,7 +98,8 @@ class Sip(LiCmd):
             li_log.set_format(logging.DEBUG)
             self.prompt = '# '
 
-    def do_env(self, argv):
+    @staticmethod
+    def do_env(argv):
         """
         get environment variable , same as printenv
         if give a key , it will return the specific environment variable value
@@ -111,7 +112,8 @@ class Sip(LiCmd):
             for k, v in os.environ.items():
                 print('{}={}'.format(k, v))
 
-    def do_exit(self, argv):
+    @staticmethod
+    def do_exit(argv):
         """exit the program."""
         print("bye.")
         exit(0)
@@ -122,13 +124,15 @@ class Sip(LiCmd):
 
         run('vi {}'.format(log))
 
-    def do_pwd(self, argv):
+    @staticmethod
+    def do_pwd(argv):
         """
         脚本的根目录，即该脚本的绝对路径 去除sip/sip.py后
         """
         print(os.getcwd())
 
-    def do_pull(self, argv):
+    @staticmethod
+    def do_pull(argv):
         """
         更新脚本至最新脚本，使用 git 命令是实现的
 
@@ -216,11 +220,13 @@ class Sip(LiCmd):
         if isinstance(d, dict):
             return list(map(lambda x: x + " ", [k for k in d.keys() if k.startswith(text)]))
 
-    def complete_debug(self, text, line, begin_idx, end_idx):
+    @staticmethod
+    def complete_debug(text, line, begin_idx, end_idx):
 
         return complete_keys(line, ('-i',), text)
 
-    def complete_env(self, text, line, begin_idx, end_idx):
+    @staticmethod
+    def complete_env(text, line, begin_idx, end_idx):
 
         return complete_keys(line, os.environ.keys(), text)
 
