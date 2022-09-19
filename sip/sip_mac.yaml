@@ -1,0 +1,7 @@
+
+sip:
+  log: /Users/li/Documents/logs/sip.log
+
+backup:
+  origin: /Users/li/Documents/backup
+  target: /Users/li/Documents/backup

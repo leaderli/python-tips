@@ -14,7 +14,7 @@ from li.li_getopt import single_short_opts_exits
 from li.li_util import deep_get
 
 SIP_CONFIG_FILES = 'SIP_CONFIG_FILES'
-SIP_ENV = 'com_pccc_sip_env'
+SIP_ENV = 'sip_env'
 
 
 def complete_keys(line, keys, prefix):
@@ -36,9 +36,11 @@ class Sip(LiCmd):
 
         self.__config = {}
 
-        config_files = os.environ.get(SIP_CONFIG_FILES) or []
+        config_files = os.environ.get(SIP_CONFIG_FILES)
         if config_files:
             config_files = config_files.split(',')
+        else:
+            config_files = []
         config_files.insert(0, 'sip.yaml')
 
         for config_file in config_files:
