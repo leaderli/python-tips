@@ -1,7 +1,6 @@
 import logging
 
 
-
 class Log(object):
 
     def __init__(self, _func=None, *, name='default'):
@@ -39,10 +38,10 @@ def hello2(name):
 # print(hello2('two'))
 
 
-def hello3(name='li', age=10,**kwargs):
+def hello3(name='li', age=10, **kwargs):
     print(name)
     print(age)
     pass
 
 
-hello3('fuck',a=1,b=2)
+hello3('fuck', a=1, b=2)
