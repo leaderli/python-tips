@@ -1,7 +1,5 @@
 from cmd import Cmd
 
-import li.li_decorator
-
 
 class MyPrompt(Cmd):
 
@@ -36,4 +34,3 @@ if __name__ == '__main__':
 
     prompt.prompt = '> '
     prompt.cmdloop('Starting prompt...')
-

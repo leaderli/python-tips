@@ -1,5 +1,4 @@
 import functools
-import logging
 
 env = 'uat'
 
@@ -11,5 +10,3 @@ def run_on_uat(func):
         return func(*args, **kwargs)
 
     return wrapper
-
-

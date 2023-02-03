@@ -1,6 +1,5 @@
 from li import li_log
 
-
 table = [['a', 'b', 'c'],
          ['aaaaaaaaaa', 'b', 'c'],
          ['a', 'bbbbbbbbbb', 'c'],

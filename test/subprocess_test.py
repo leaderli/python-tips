@@ -1,4 +1,4 @@
-from li.li_bash import ssh_call, call
+from li.li_bash import call
 
 # import subprocess
 #

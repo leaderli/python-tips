@@ -1,5 +1,3 @@
-from datetime import  datetime
+from datetime import datetime
 
-
-
-print(datetime.strftime(datetime.now(),'%Y%m%d'))
+print(datetime.strftime(datetime.now(), '%Y%m%d'))

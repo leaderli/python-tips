@@ -1,6 +1,8 @@
 import logging
 
 logging.basicConfig(format='%(levelname)s:%(message)s')
+
+
 # logging.basicConfig(format='%(message)s')
 
 

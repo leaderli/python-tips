@@ -8,6 +8,6 @@ d = {
     }
 }
 
-assert deep_get(d,['a']) == 1
-assert deep_get(d,['map',"m1"]) == "m1"
-assert deep_get(d,['map',"m1","m"]) == "m1"
+assert deep_get(d, ['a']) == 1
+assert deep_get(d, ['map', "m1"]) == "m1"
+assert deep_get(d, ['map', "m1", "m"]) == "m1"

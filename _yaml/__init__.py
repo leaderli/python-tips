@@ -15,6 +15,7 @@ if not getattr(yaml, '__with_libyaml__', False):
 else:
     from yaml._yaml import *
     import warnings
+
     warnings.warn(
         'The _yaml extension module is now located at yaml._yaml'
         ' and its location is subject to change.  To use the'
