@@ -1,5 +1,5 @@
-def deep_get(d, keys, reversed=True):
-    if reversed:
+def deep_get(d, keys, reverse=True):
+    if reverse:
         keys.reverse()
 
     while keys:

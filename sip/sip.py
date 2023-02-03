@@ -83,7 +83,7 @@ class Sip(LiCmd):
         argv = argv.split()
         d = self.__config
         d = deep_get(d, argv)
-        print(d)
+        print(yaml.dump(d))
 
     def do_debug(self, argv):
         """
@@ -209,7 +209,7 @@ class Sip(LiCmd):
         d = self.__config
         #
 
-        d = deep_get(d, keys, reversed=False)
+        d = deep_get(d, keys, reverse=False)
         # while keys:
         #     key = keys.pop()
         #     d = d.get(key, {})
